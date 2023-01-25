@@ -28,7 +28,20 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                <a href="/totalMeasuredValues">Link 1</a>
+                                <a href="/sortimentValues">Link 2</a>
+                                <a href="/measuredValues">Link 3</a>
+                            </div>
             @yield('content')
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
