@@ -20,3 +20,4 @@ Route::get('/', function () {
 Route::get('/totalMeasuredValues', [App\Http\Controllers\ReportController::class, 'totalMeasuredValues']);
 Route::get('/sortimentValues', [App\Http\Controllers\ReportController::class, 'sortimentValues']);
 Route::get('/measuredValues', [App\Http\Controllers\ReportController::class, 'measuredValues']);
+Route::get('/filter', [App\Http\Controllers\ReportController::class, 'measuredValues']);

@@ -40,19 +40,23 @@ class ReportController
 
     public function measuredValues()
     {
-        $userDate = '2023-01-16';
+        $userDate = request('date');
+        $count = [];
 
-        $allGalvaIDs = kpdcRegistrsInd::select('tp_galva_id')
-            ->whereDate('datums_uzm', $userDate)
-            ->pluck('tp_galva_id')
-            ->toArray();
 
-        foreach ($allGalvaIDs as $key => $value) {
-            $array[$key] = kpdcRegister::where('id', $value)->value('vieta_nosaukums');
+        if (!$userDate == null) {
+            $allGalvaIDs = kpdcRegistrsInd::select('tp_galva_id')
+                ->whereDate('datums_uzm', $userDate)
+                ->pluck('tp_galva_id')
+                ->toArray();
+
+            foreach ($allGalvaIDs as $key => $value) {
+                $array[$key] = kpdcRegister::where('id', $value)->value('vieta_nosaukums');
+            }
+
+            $array = array_filter($array);
+            $count = array_count_values($array);
         }
-
-        $array = array_filter($array);
-        $count = array_count_values($array);
 
         return view('measuredValues')
             ->with('userDate', $userDate)
