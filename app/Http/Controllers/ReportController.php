@@ -20,7 +20,7 @@ class ReportController
             $totalMeasuredValues[$type]['brakis'] = kpdcRegister::where('uzm_tips_vmf', $type)->sum('tilp_brakis');
         }
 
-        return view('kop_uzm_tilp')
+        return view('totalMeasuredValues')
             ->with('totalMeasuredValues', $totalMeasuredValues);
     }
 
@@ -38,19 +38,18 @@ class ReportController
             ->with('valuesBySortiment', $sortiments);
     }
 
-    public function measuredValues()
+    public function valuesByDate()
     {
         $userDate = request('date');
         $count = [];
 
-
         if (!$userDate == null) {
-            $allGalvaIDs = kpdcRegistrsInd::select('tp_galva_id')
+            $allIDs = kpdcRegistrsInd::select('tp_galva_id')
                 ->whereDate('datums_uzm', $userDate)
                 ->pluck('tp_galva_id')
                 ->toArray();
 
-            foreach ($allGalvaIDs as $key => $value) {
+            foreach ($allIDs as $key => $value) {
                 $array[$key] = kpdcRegister::where('id', $value)->value('vieta_nosaukums');
             }
 
@@ -58,7 +57,7 @@ class ReportController
             $count = array_count_values($array);
         }
 
-        return view('measuredValues')
+        return view('valuesByDate')
             ->with('userDate', $userDate)
             ->with('valuesByDate', $count);
     }

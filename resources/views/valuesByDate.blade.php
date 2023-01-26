@@ -4,47 +4,40 @@
     <div class="card-body">
 
         <h1 class="text-1xl text-center text-gray-800 font-semibold pb-3">
-            Tilpums pa sortimentiem (grupveida uzmērīšana)
+            Uzmērīto baļķu skaits pa datumiem un vietām.
         </h1>
 
-        <div class="container w-full mx-auto px-2">
-            <!--Card-->
-            <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-stone-200">
+        <div class="text-center pb-4">
+            <h1 class="text text-center text-gray-800 font-semibold pb-3">
+                Izvēlēties datumu:
+            </h1>
+            <form action="/filter" type="get">
+                <label for="start">Datums:</label>
+                <input type="date" id="start" name="date"
+                       value="2023-01-01"
+                       min="2020-01-01" max="2023-12-31">
+                <br>
+                <input class="pt-2 pb-2 pl-2 pr-2 text-1/2xl mt-2 bg-gray-200 rounded border-2" type="submit"
+                       value="Filter">
+            </form>
+        </div>
 
+        <div class="container w-full mx-auto px-2">
+            <div id='recipients' class="p-8 mt-6 lg:mt-0 rounded shadow bg-stone-200">
                 <table id="example" class="stripe hover" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
                     <thead>
                     <tr>
-                        <th>Sortiments</th>
-                        <th>Bruto</th>
-                        <th>Neto</th>
-                        <th>Brāķis</th>
+                        <th>Uzmērīšanas datums</th>
+                        <th>Vieta</th>
+                        <th>Skaits</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($valuesBySortiment as $entry)
+                    @foreach($valuesByDate as $location => $count)
                         <tr>
-                            <td>{{ $entry['sortiments'] }}</td>
-                            <td>
-                                @if ($entry['bruto'] == null)
-                                    Nav dati
-                                @else
-                                    {{ $entry['bruto'] }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($entry['neto'] == null)
-                                    Nav dati
-                                @else
-                                    {{ $entry['neto'] }}
-                                @endif
-                            </td>
-                            <td>
-                                @if ($entry['brakis'] == null)
-                                    Nav dati
-                                @else
-                                    {{ $entry['brakis'] }}
-                                @endif
-                            </td>
+                            <td>{{ $userDate }}</td>
+                            <td>{{ $location }}</td>
+                            <td>{{ $count }}</td>
                         </tr>
                     @endforeach
                     </tbody>

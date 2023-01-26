@@ -28,7 +28,7 @@
         /*Form fields*/
         .dataTables_wrapper select,
         .dataTables_wrapper .dataTables_filter input {
-            color: #4a5568;
+            color: #40693c;
             /*text-gray-700*/
             padding-left: 1rem;
             /*pl-4*/
@@ -52,7 +52,8 @@
         /*Row Hover*/
         table.dataTable.hover tbody tr:hover,
         table.dataTable.display tbody tr:hover {
-            background-color: #ebf4ff;
+            background-color: #40693c;
+            color: #fff;
             /*bg-indigo-100*/
         }
 
@@ -70,13 +71,13 @@
         .dataTables_wrapper .dataTables_paginate .paginate_button.current {
             color: #fff !important;
             /*text-white*/
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
+            box-shadow: 0 1px 3px 0 rgba(255, 255, 255, 0.1), 0 1px 2px 0 rgba(87, 81, 81, 0.97);
             /*shadow*/
             font-weight: 700;
             /*font-bold*/
             border-radius: .25rem;
             /*rounded*/
-            background: #667eea !important;
+            background: #40693c !important;
             /*bg-indigo-500*/
             border: 1px solid transparent;
             /*border border-transparent*/
@@ -84,7 +85,7 @@
 
         /*Pagination Buttons - Hover */
         .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-            color: #fff !important;
+            color: #ffffff !important;
             /*text-white*/
             box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06);
             /*shadow*/
@@ -92,7 +93,7 @@
             /*font-bold*/
             border-radius: .25rem;
             /*rounded*/
-            background: #667eea !important;
+            background: #40693c !important;
             /*bg-indigo-500*/
             border: 1px solid transparent;
             /*border border-transparent*/
@@ -107,41 +108,43 @@
         }
 
         /*Change colour of responsive icon*/
-        table.dataTable.dtr-inline.collapsed>tbody>tr>td:first-child:before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr>th:first-child:before {
-            background-color: #667eea !important;
+        table.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+        table.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+            background-color: #739f44 !important;
             /*bg-indigo-500*/
         }
     </style>
 
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Atskaites
-                </a>
+<div class="bg-gradient-to-b from-lime-900 via-stone-200 to-white" id="app">
+    <nav class="navbar navbar-expand-md navbar-light bg-lime-900 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand text-white" href="{{ url('/') }}">
+                Atskaites
+            </a>
+        </div>
+    </nav>
 
-            </div>
-        </nav>
-
-        <main class="py-4">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-8">
-                        <div class="card">
-                            <div class="card-header text-center">
-                                <a href="/totalMeasuredValues">Link 1</a>
-                                <a href="/sortimentValues">Link 2</a>
-                                <a href="/measuredValues">Link 3</a>
-                            </div>
-            @yield('content')
+    <main class="py-4 ">
+        <div class="container ">
+            <div class="row justify-content-center ">
+                <div class="w-3/5">
+                    <div class="card bg-gradient-to-b from-stone-300 via-stone-200 to-stone-100">
+                        <div class="card-header text-center">
+                            <a class="pr-2 pl-2 pt-1 pb-1 border-2 rounded" href="/totalMeasuredValues">Kopējais
+                                uzmērītais tilpums</a>
+                            <a class="pr-2 pl-2 pt-1 pb-1 border-2 rounded" href="/sortimentValues">Tilpums pa
+                                sortimentiem</a>
+                            <a class="pr-2 pl-2 pt-1 pb-1 border-2 rounded" href="/valuesByDate">Uzmērīto baļķu skaits
+                                pa datumiem un vietām</a>
                         </div>
+                        @yield('content')
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>
